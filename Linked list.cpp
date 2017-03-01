@@ -3,22 +3,22 @@
 #include <vector>
 using namespace std;
 
-struct node{
+struct Node{
 	int value;
-	node* next;
+	Node* next;
 
-	node(int element): 
+	Node(int element): 
 		value(element), next(NULL) {}
 };
 
-struct linkedList{ 
+struct LinkedList{ 
 	int size_of;
-	node* first, *last;
-	linkedList(): 
+	Node* first, *last;
+	LinkedList(): 
 		first(NULL), last(NULL), size_of(0) {}
 
 	void pushElement(int element){
-		node * new_node = new node(element);
+		Node * new_node = new Node(element);
 		if(first == NULL){
 			first = new_node;
 		} else {
@@ -27,8 +27,8 @@ struct linkedList{
 		size_of++;
 	}
 
-	node* find(int element){
-		node* actual_node = first;
+	Node* find(int element){
+		Node* actual_node = first;
 		while(actual_node != NULL){
 			if(actual_node->value == element){
 				return actual_node;
@@ -37,12 +37,16 @@ struct linkedList{
 	}
 
 	void deleteElement(int element){
-		node* deleted_element = find(element);
+		Node* deleted_element = find(element);
+
 		if(deleted_element == NULL) return;
+
+		Node* to_delete = deleted_element->next;
+
 		deleted_element->value = deleted_element->next->value;
 		deleted_element->next = deleted_element->next->next;
 
-		delete deleted_element->next;
+		delete to_delete;
 	}
 
 	int size(){
