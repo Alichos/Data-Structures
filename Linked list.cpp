@@ -43,8 +43,8 @@ struct LinkedList{
 
 		Node* to_delete = deleted_element->next;
 
-		deleted_element->value = deleted_element->next->value;
-		deleted_element->next = deleted_element->next->next;
+		deleted_element->value = to_delete->value;
+		deleted_element->next = to_delete->next;
 
 		delete to_delete;
 	}
