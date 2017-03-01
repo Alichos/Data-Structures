@@ -36,6 +36,20 @@ struct LinkedList{
 		} return NULL;
 	}
 
+	//When the last element is deleted;
+	void SpecialCase(){
+		if(size_of == 1){
+			first = last = NULL; return;
+		}
+
+		Node* actual_node = first;
+		for(int i = 0; i < size_of - 2; i++){
+			actual_node = actual_node->next;
+		} delete actual_node->next; 
+		actual_node->next = NULL; 
+		last = actual_node;
+	}
+
 	void DeleteElement(int element){
 		Node* deleted_element = Find(element);
 
@@ -43,10 +57,15 @@ struct LinkedList{
 
 		Node* to_delete = deleted_element->next;
 
+		if(to_delete == NULL){
+			SpecialCase();
+			size_of--; return;
+		}
+
 		deleted_element->value = to_delete->value;
 		deleted_element->next = to_delete->next;
 
-		delete to_delete;
+		delete to_delete; size_of--;
 	}
 
 	int Size(){
