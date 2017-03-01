@@ -11,13 +11,13 @@ struct node{
 		value(element), next(NULL) {}
 };
 
-struct linked_list{ 
+struct linkedList{ 
 	int size_of;
 	node* first, *last;
-	linked_list(): 
+	linkedList(): 
 		first(NULL), last(NULL), size_of(0) {}
 
-	void push_element(int element){
+	void pushElement(int element){
 		node * new_node = new node(element);
 		if(first == NULL){
 			first = new_node;
@@ -36,11 +36,13 @@ struct linked_list{
 		} return NULL;
 	}
 
-	void delete_element(int element){
+	void deleteElement(int element){
 		node* deleted_element = find(element);
 		if(deleted_element == NULL) return;
 		deleted_element->value = deleted_element->next->value;
 		deleted_element->next = deleted_element->next->next;
+
+		delete deleted_element->next;
 	}
 
 	int size(){
