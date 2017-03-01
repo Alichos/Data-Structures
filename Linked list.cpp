@@ -17,8 +17,8 @@ struct LinkedList{
 	LinkedList(): 
 		first(NULL), last(NULL), size_of(0) {}
 
-	void pushElement(int element){
-		Node * new_node = new Node(element);
+	void PushElement(int element){
+		Node* new_node = new Node(element);
 		if(first == NULL){
 			first = new_node;
 		} else {
@@ -27,7 +27,7 @@ struct LinkedList{
 		size_of++;
 	}
 
-	Node* find(int element){
+	Node* Find(int element){
 		Node* actual_node = first;
 		while(actual_node != NULL){
 			if(actual_node->value == element){
@@ -36,8 +36,8 @@ struct LinkedList{
 		} return NULL;
 	}
 
-	void deleteElement(int element){
-		Node* deleted_element = find(element);
+	void DeleteElement(int element){
+		Node* deleted_element = Find(element);
 
 		if(deleted_element == NULL) return;
 
@@ -49,7 +49,7 @@ struct LinkedList{
 		delete to_delete;
 	}
 
-	int size(){
+	int Size(){
 		return size_of;
 	}
 };
